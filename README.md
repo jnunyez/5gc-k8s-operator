@@ -1,5 +1,7 @@
 # 5G-C Operator
 
+Generator 5G-C configuration when kubernetes 5G-C resources change. The operator renders the configuration templates provided in the resource into a new configmap and mounts that to the 5G-C containers
+
 ## Quickstart
 
 * Install binary folllowing up-to-date instructions showed [here](https://sdk.operatorframework.io/docs/installation/). Note we are following the lin in [here](https://marketplace.redhat.com/en-us/blog/building-an-operator)
@@ -34,7 +36,7 @@ The resulting operator scaffolding should look like this:
 operator-sdk create api --version v1alpha1 --kind Core5g --group open5gcore --resource=true --controller=true
 ```
 
-The resulting dir structure:
+This will scaffold the operator API at `api/v1alpha1/operator_types.go` and the controller at `controllers/operator_controller.go`:
 
 ```console
 .

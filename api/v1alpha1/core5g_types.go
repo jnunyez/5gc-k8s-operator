@@ -22,24 +22,19 @@ import (
 
 // EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
+type Core5gStatus string
 
+const (
+	Core5gInitial   Core5gStatus   = "Initial"
+	Core5gRendering Core5gStatus = "Rendering"
+	Core5gCreating  Core5gStatus = "Creating"
+	Core5gRendered  Core5gStatus = "Rendered"
+)
 // Core5gSpec defines the desired state of Core5g
 type Core5gSpec struct {
-	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
-
-	// Foo is an example field of Core5g. Edit core5g_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	Image string `json:"image"` 
 }
 
-// Core5gStatus defines the observed state of Core5g
-type Core5gStatus struct {
-	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
-}
-
-//+kubebuilder:object:root=true
-//+kubebuilder:subresource:status
 
 // Core5g is the Schema for the core5gs API
 type Core5g struct {
