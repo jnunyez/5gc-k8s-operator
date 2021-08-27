@@ -1,0 +1,24 @@
+# permissions for end users to edit core5gs.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: core5g-editor-role
+rules:
+- apiGroups:
+  - 5g.5gc.dev
+  resources:
+  - core5gs
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - 5g.5gc.dev
+  resources:
+  - core5gs/status
+  verbs:
+  - get

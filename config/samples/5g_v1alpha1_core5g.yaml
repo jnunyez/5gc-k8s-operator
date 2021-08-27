@@ -1,0 +1,7 @@
+apiVersion: 5g.5gc.dev/v1alpha1
+kind: Core5g
+metadata:
+  name: core5g-sample
+spec:
+  # Add fields here
+  foo: bar
