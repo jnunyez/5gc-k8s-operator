@@ -25,18 +25,19 @@ import (
 type Core5gStatus string
 
 const (
-	Core5gInitial   Core5gStatus   = "Initial"
+	Core5gInitial   Core5gStatus = "Initial"
 	Core5gRendering Core5gStatus = "Rendering"
 	Core5gCreating  Core5gStatus = "Creating"
 	Core5gRendered  Core5gStatus = "Rendered"
 )
+
 // Core5gSpec defines the desired state of Core5g
 type Core5gSpec struct {
-	Image string `json:"image"` 
+	Image string `json:"image"`
 }
 
-
 // Core5g is the Schema for the core5gs API
+// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 type Core5g struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`

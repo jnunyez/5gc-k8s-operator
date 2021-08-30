@@ -2,8 +2,6 @@
 # since it depends on service name and namespace that are out of this kustomize package.
 # It should be run by config/default
 resources:
-- bases/5g.5gc.dev_core5gs.yaml
-- bases/open5gs.5gc.dev_core5gs.yaml
 - bases/open5gcore.5gc.dev_core5gs.yaml
 #+kubebuilder:scaffold:crdkustomizeresource
 

@@ -19,10 +19,12 @@ package controllers
 import (
 	"context"
 
+	"github.com/go-logr/logr"
+	"k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/runtime"
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
-	"sigs.k8s.io/controller-runtime/pkg/log"
+	//"sigs.k8s.io/controller-runtime/pkg/log"
 
 	open5gcorev1alpha1 "github.com/jnunyez/5gc-k8s-operator/api/v1alpha1"
 )
@@ -30,6 +32,7 @@ import (
 // Core5gReconciler reconciles a Core5g object
 type Core5gReconciler struct {
 	client.Client
+	Log    logr.Logger
 	Scheme *runtime.Scheme
 }
 
@@ -47,10 +50,21 @@ type Core5gReconciler struct {
 // For more details, check Reconcile and its Result here:
 // - https://pkg.go.dev/sigs.k8s.io/controller-runtime@v0.9.2/pkg/reconcile
 func (r *Core5gReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
-	_ = log.FromContext(ctx)
+	//_ = log.FromContext(ctx)
 
-	// your logic here
-
+	log := r.Log.WithValues("Core5g", req.NamespacedName)
+	// Fetch the core5g instance
+	core5g := &open5gcorev1alpha1.Core5g{}
+	err := r.Get(ctx, req.NamespacedName, core5g)
+	if err != nil {
+		if errors.IsNotFound(err) {
+			log.Info("Core5g resource not found")
+			return ctrl.Result{}, nil
+		}
+		log.Error(err, "Failed to get core5g")
+		return ctrl.Result{}, err
+	}
+	log.Info("The end of error treatment")
 	return ctrl.Result{}, nil
 }
 

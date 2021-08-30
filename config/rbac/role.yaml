@@ -1,0 +1,34 @@
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: null
+  name: manager-role
+rules:
+- apiGroups:
+  - open5gcore.5gc.dev
+  resources:
+  - core5gs
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - open5gcore.5gc.dev
+  resources:
+  - core5gs/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - open5gcore.5gc.dev
+  resources:
+  - core5gs/status
+  verbs:
+  - get
+  - patch
+  - update
